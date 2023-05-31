@@ -30,11 +30,30 @@ const taskRef = collection(db, "tasks");
 const labelRef = collection(db, "labels");
 
 // getting collections
+const tasks = [];
+const labels = [];
+
 getDocs(taskRef)
   .then((snapshot) => {
-    let tasks = [];
-    snapshot.docs.forEach((doc) => tasks.push({ ...doc.data(), id: doc.id }));
+    snapshot.docs.forEach((doc) => {
+      tasks.push({
+        ...doc.data(),
+        id: doc.id,
+      });
+    });
     console.log(tasks);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+getDocs(labelRef)
+  .then((snapshot) => {
+    snapshot.docs.forEach((doc) => labels.push({ ...doc.data(), id: doc.id }));
+    console.log(labels);
+    console.log(
+      tasks.filter((task) => labels?.find((label) => label.id == task.label))
+    );
   })
   .catch((err) => {
     console.log(err);
@@ -61,10 +80,9 @@ form.addEventListener("submit", (e) => {
       ? Timestamp.fromDate(new Date(form.start_date.value))
       : null,
     links: form.links ? form.links : null,
+    label: form.label ? form.label.value : null,
+    checkbox: form.checkbox ? form.checkbox : null,
   }).then(() => {
     form.reset();
   });
 });
-
-// color options
-const colors = [""];

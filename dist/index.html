@@ -21,36 +21,17 @@
       <label for="desc">Description:</label>
       <textarea name="desc"></textarea>
       <br />
-      <div class="dropdown">
-        <div class="btn-group">
-          <button
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Label
-          </button>
-          <ul class="dropdown-menu p-0">
-            <li>
-              <a class="dropdown-item"
-                ><div
-                  class="rounded my-1 py-3"
-                  style="background-color: aqua"
-                ></div
-              ></a>
-            </li>
-            <li>
-              <a class="dropdown-item"
-                ><div
-                  class="rounded my-1 py-3"
-                  style="background-color: red"
-                ></div
-              ></a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <select name="label" class="form-select">
+        <option hidden selected>Select Label</option>
+        <option value="aqua">
+          <div class="rounded my-1 py-3" style="background-color: blueviolet">
+            <p class="text-light">shopping</p>
+          </div>
+        </option>
+        <option value="red">
+          <div class="rounded my-1 py-3" style="background-color: red"></div>
+        </option>
+      </select>
 
       <button>add</button>
     </form>
